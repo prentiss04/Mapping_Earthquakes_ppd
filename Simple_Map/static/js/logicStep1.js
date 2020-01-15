@@ -155,9 +155,9 @@ let baseMaps = {
 
 
   let map = L.map('mapid', {
-    center: [43.7, -79.3],
-    zoom: 11,
-    layers: [satelliteStreets]
+    center: [39.5, -98.5],
+    zoom: 3,
+    layers: [streets]
 });
 
 // Pass our map layers into our layers control and add the layers control to the map
@@ -176,8 +176,14 @@ let airportData = "https://raw.githubusercontent.com/prentiss04/Mapping_Earthqua
 // // Accessing the Toronto airline routes GeoJSON URL
 // let torontoData = "https://raw.githubusercontent.com/prentiss04/Mapping_Earthquakes_ppd/Mapping_GeoJSON_Linestrings/torontoRoutes.json";
 
-// Accessing the Toronto neighborhoods GeoJSON URL.
-let torontoHoods = "https://raw.githubusercontent.com/prentiss04/Mapping_Earthquakes_ppd/Mapping_GeoJSON_Linestrings/torontoNeighborhoods.json";
+// // Accessing the Toronto neighborhoods GeoJSON URL.
+// let torontoHoods = "https://raw.githubusercontent.com/prentiss04/Mapping_Earthquakes_ppd/Mapping_GeoJSON_Linestrings/torontoNeighborhoods.json";
+
+// Retrieve the earthquake GeoJSON data.
+d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(function(data) {
+  // Creating a GeoJSON layer with the retrieved data.
+  L.geoJson(data).addTo(map);
+});
 
 // Create a style for the lines.
 let myStyle = {
